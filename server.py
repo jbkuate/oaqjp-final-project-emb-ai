@@ -37,7 +37,7 @@ def emot_detector():
         i = 0
         n = len(list_response_keys) - 1
         while i < n:
-            formatted_string = formatted_string + list_response_keys[i] + ": " + str(response[list_response_keys[i]]) + ", "
+            formatted_string = formatted_string + "'" + list_response_keys[i] +"'" + ": " + str(response[list_response_keys[i]]) + ", "
             i = i + 1 
         
         #adding the dominant emotion
