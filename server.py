@@ -18,7 +18,6 @@ def emot_detector():
         function. The output returned shows the label and its confidence 
         score for the provided text.
     '''
-    # TODO
     # Retrieve the text to analyze from the request arguments
     text_to_analyze = request.args.get('textToAnalyze')
 
@@ -27,35 +26,35 @@ def emot_detector():
 
     # Extract the emotions labels in a list from the response
     list_response_keys = list(response.keys())
-    
+
     # Check if at least one dominant emotion is None, indicating an error or invalid input
     if response['dominant_emotion'] is None:
-        return "Invalid text! Please try again!."
+        formatted_string = "Invalid text! Please try again!."
     else:
         #initialize the formatted string
         formatted_string = "For the given statement, the system response is "
         i = 0
         n = len(list_response_keys) - 1
         while i < n:
-            formatted_string = formatted_string + "'" + list_response_keys[i] +"'" + ": " + str(response[list_response_keys[i]]) + ", "
-            i = i + 1 
-        
+            formatted_string = formatted_string + "'" + list_response_keys[i] +"'"\
+             + ": " + str(response[list_response_keys[i]]) + ", "
+            i = i + 1
         #adding the dominant emotion
-        formatted_string = formatted_string + "The dominant emotion is " + response[list_response_keys[n]]
-        
-        # Return a formatted string with the emotion label and  score
-        return formatted_string
+        formatted_string = formatted_string + "The dominant emotion is "\
+         + response[list_response_keys[n]]
+
+    # Return a formatted string with the emotion label and  score
+    return formatted_string
 
 @app.route("/")
 def render_index_page():
     ''' This function initiates the rendering of the main application
         page over the Flask channel
     '''
-    #TODO
+
     return render_template('index.html')
 
 if __name__ == "__main__":
-    ''' This functions executes the flask app and deploys it on localhost:5000
-    '''#TODO
+    #This functions executes the flask app and deploys it on localhost:5000
     app.run(host="0.0.0.0", port=5000)
     
