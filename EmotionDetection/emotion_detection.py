@@ -24,26 +24,27 @@ def emotion_detector(text_to_analyse):
         fear_score = formatted_response['emotionPredictions'][0]['emotion']['fear']
         joy_score = formatted_response['emotionPredictions'][0]['emotion']['joy']
         sadness_score = formatted_response['emotionPredictions'][0]['emotion']['sadness']
-    # If the response status code is 500, set label and score to None
-    elif response.status_code == 500:
-        anger_score = none
-        disgust_score = none
-        fear_score = none
-        joy_score = none
-        sadness_score = none
-    
-    #list of emotions names
-    emotion_names = {'0':'anger', '1':'disgust', '2':'fear', '3':'joy', '4':'sadness'}
-    
-    #list of emotions scores
-    emotion_scores = [anger_score, disgust_score, fear_score, joy_score, sadness_score]
 
-    #get the dominant emotion score
-    dominant_emotion_score = max(emotion_scores)
-    #get the index of the dominant emotion score
-    index_dominant_emotion = emotion_scores.index(dominant_emotion_score)
-    #get the name of dominant emotion name
-    dominant_emotion_name = emotion_names[str(index_dominant_emotion)]
+        #list of emotions names
+        emotion_names = {'0':'anger', '1':'disgust', '2':'fear', '3':'joy', '4':'sadness'}
+    
+        #list of emotions scores
+        emotion_scores = [anger_score, disgust_score, fear_score, joy_score, sadness_score]
+
+        #get the dominant emotion score
+        dominant_emotion_score = max(emotion_scores)
+        #get the index of the dominant emotion score
+        index_dominant_emotion = emotion_scores.index(dominant_emotion_score)
+        #get the name of dominant emotion name
+        dominant_emotion_name = emotion_names[str(index_dominant_emotion)]
+    # If the response status code is 400, set emotion score and dominant emotion to None
+    elif response.status_code == 400:
+        anger_score = None
+        disgust_score = None
+        fear_score = None
+        joy_score = None
+        sadness_score = None
+        dominant_emotion_name = None
     
     #define the response of the function
     dict_response = {

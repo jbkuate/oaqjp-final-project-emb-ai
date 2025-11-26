@@ -22,15 +22,15 @@ def emot_detector():
     # Retrieve the text to analyze from the request arguments
     text_to_analyze = request.args.get('textToAnalyze')
 
-    # Pass the text to the sentiment_analyzer function and store the response
+    # Pass the text to the emotion_detector function and store the response
     response = emotion_detector(text_to_analyze)
 
     # Extract the emotions labels in a list from the response
     list_response_keys = list(response.keys())
     
-    # Check if at least one emotion is None, indicating an error or invalid input
-    if response['anger'] is None:
-        return "Invalid input! Try again."
+    # Check if at least one dominant emotion is None, indicating an error or invalid input
+    if response['dominant_emotion'] is None:
+        return "Invalid text! Please try again!."
     else:
         #initialize the formatted string
         formatted_string = "For the given statement, the system response is "
@@ -58,3 +58,4 @@ if __name__ == "__main__":
     ''' This functions executes the flask app and deploys it on localhost:5000
     '''#TODO
     app.run(host="0.0.0.0", port=5000)
+    
